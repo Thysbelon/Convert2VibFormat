@@ -1,7 +1,7 @@
 # Convert2VibFormat
 A collection of scripts that take all the audio files in the current folder and converts them to a format compatible with PlayStation emulators, so one can easily play custom songs in Vib-Ribbon.
 
-*These scripts require [VLC](https://www.videolan.org/vlc/) to work.* The scripts for DuckStation also require chdman, which comes with mame (but does not require mame to function). [Windows MAME download](https://www.mamedev.org/release.html), [Other platforms MAME download](https://wiki.mamedev.org/index.php/SDL_Supported_Platforms).
+*These scripts require [VLC](https://www.videolan.org/vlc/) to work.* The scripts for DuckStation also require chdman (if you choose to compress the output, which is recommended), which comes with mame (but does not require mame to function). [Windows MAME download](https://www.mamedev.org/release.html), [Other platforms MAME download](https://wiki.mamedev.org/index.php/SDL_Supported_Platforms).
 
 The `.bat` files are for Windows and the `.bash` files are for Mac and Linux (currently only tested to work on Ubuntu and Termux).
 
