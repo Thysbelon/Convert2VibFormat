@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>Convert2VibFormat</title>
+<meta name=color-scheme content="dark light">
+<meta name=viewport content=width=device-width,initial-scale=1.0>
+<!--<script src="coi-serviceworker.min.js"></script>-->
+<script src=runFFMPEG.js></script> <!-- remember to set the right script -->
+<!--<script src=chdman.js></script>-->
+</head>
+<body>
+<label for="song-select-file">Upload an audio file:</label>
+<input type=file id="song-select-file" />
+<button>Run</button>
+<script>
+async function wrapper() {
+	var fileInput=document.getElementById("song-select-file");
+	var outputWav = await runFFMPEG(fileInput.files[0]);
+	var filenameStart=fileInput.files[0].name.replace(/(.*\.).*/, '$1');
+	download(new File([outputWav], filenameStart+'wav')); // Firefox renames .bin files to their actual file type.
+	const cueText=`FILE "${filenameStart}wav" BINARY
+  TRACK 01 AUDIO
+    INDEX 01 00:00:00`;
+	download(new File([cueText] , filenameStart+'cue'));
+//	/*
+//	const module = {
+//		arguments: ['createcd', '-i', 'input.cue', '-o', "output.chd"],
+//		preRun: () => {
+//			console.log('writing input.bin...');
+//			module.FS.writeFile("input.bin", outputWav);
+//			console.log('writing input.cue...');
+//			module.FS.writeFile("input.cue",
+//`FILE "input.bin" BINARY
+//  TRACK 01 AUDIO
+//    INDEX 01 00:00:00`)
+//		},
+//		addOnExit: () => {
+//			console.log('reading output.chd...');
+//			let output = module.FS.readFile("output.chd", {
+//				encoding: "binary",
+//			});
+//			download(new File([output], fileInput.files[0].name+".chd"))
+//		},
+//	};
+//	try {
+//		const chdmanModule = await chdman();
+//		chdmanModule.FS.writeFile("input.bin", outputWav);
+//		chdmanModule.FS.writeFile("input.cue",
+//`FILE "input.bin" BINARY
+//  TRACK 01 AUDIO
+//    INDEX 01 00:00:00`)
+//		await chdmanModule.callMain(['createcd', '-i', 'input.cue', '-o', "output.chd"])
+//		//console.log('reading output.chd...');
+//		//let output = chdmanModule.FS.readFile("output.chd", {
+//		//	encoding: "binary",
+//		//});
+//		//download(new File([output], fileInput.files[0].name+".chd"))
+//	} catch(error) {
+//		console.error(error);
+//		console.log('reading output.chd...');
+//		let output = chdmanModule.FS.readFile("output.chd", {
+//			encoding: "binary",
+//		});
+//		download(new File([output], fileInput.files[0].name+".chd"))
+//	}
+//	*/
+}
+document.querySelector("button").addEventListener("click", wrapper)
+
+function download(file) { // to do: replace the file argument with blob and name?
+	const link = document.createElement('a')
+	const url = URL.createObjectURL(file)
+
+	link.href = url
+	link.download = file.name
+	document.body.appendChild(link)
+	link.click()
+
+	document.body.removeChild(link)
+	window.URL.revokeObjectURL(url)
+}
+</script>
