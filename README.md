@@ -23,3 +23,7 @@ Users can run bash scripts on an Android phone using [Termux](https://termux.dev
 - Make sure the script and audio files are in the same folder.
 - Use the `cd` command to navigate to the folder your script and audio files are in; this will most likely be the Downloads folder, which can be navigated to with `cd storage/downloads` or `cd storage/shared/Download`. You can always type just `cd` to navigate back to the home directory; you can type `ls` to list the contents of the current directory, with sub-directories in color.
 - Run the script with `bash Convert2VibFormatDuckstation.bash`, or if that doesn't work: `bash Convert2VibFormatDuckstation.bash.txt`
+
+## Other links
+- [Blog post "How to Play Custom Songs in Vib-Ribbon on an Emulator"](https://thysbelon.github.io/Blog/2022-2-19/How-to-Play-Custom-Songs-in-Vib-Ribbon-on-an-Emulator.html). goes over the steps to manually convert audio files into chd. Will hopefully be useful if you can't run the command-line scripts.
+- [YouTube video "Vib-Ribbon: Easy Way to Play Custom Music on an Emulator (2024)"](https://www.youtube.com/watch?v=9hd1VYWoG9w). shows how to run the command-line script step-by-step. The video focuses on Windows, but the steps for Linux should be very similar.
