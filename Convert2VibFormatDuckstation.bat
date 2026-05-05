@@ -1,3 +1,4 @@
+chcp 65001
 @echo off
 echo IMPORTANT, before running this batch file, 
 echo PLEASE open it in a text editor and make sure that the file paths are correct.
