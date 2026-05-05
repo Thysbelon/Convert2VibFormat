@@ -1,3 +1,4 @@
+chcp 65001
 :: If you want to learn more about batch files, this is a great resource: https://ss64.com/nt/
 echo on
 if not exist "Vib-ribbon Song List.m3u" echo.Name of Vib Ribbon file here>"Vib-ribbon Song List.m3u" & echo.m3u file created. Put the file name of your Vib-Ribbon game in the m3u file. Launch the m3u file when you want to play.
